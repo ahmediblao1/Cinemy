@@ -1,0 +1,421 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="icon" href="img/cine.png">
+    <title>Cinemy.</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+
+<body>
+    <header>
+        <div class="nav-wrapper">
+            <div class="logo-container">
+                <img  class="logo" src="img/log1.png" alt="Logo">
+            </div>
+            <nav>
+                <input class="hidden" type="checkbox" id="menuToggle">
+                <label class="menu-btn" for="menuToggle">
+                    <div class="menu"></div>
+                    <div class="menu"></div>
+                    <div class="menu"></div>
+                </label>
+                <div class="nav-container">
+                    <ul class="nav-tabs">
+                        <li onclick="reload()" class="nav-tab">Home</li>
+                        <li onclick="movie()" class="nav-tab">Movies</li>
+                        <li onclick="tvshows()" class="nav-tab">Series</li>
+                        <li onclick="Popular()" class="nav-tab">Popular</li>
+                        <li  id="my-signin2"></li>
+                        <li class="nav-tab" > <div id="menu-container">
+                          <!-- Add a button to toggle the dropdown menu -->
+                          <button id="menu-button"></button>
+                          <!-- Add the dropdown menu -->
+                          <div id="menu">
+                            <div id="name"></div>
+                            <button id="logout-button">Log out</button>
+                          </div>
+                        </div></li>
+
+                    </ul>
+                </div>
+  <!-- Add a container element for the dropdown menu -->
+ 
+  <script src="https://apis.google.com/js/platform.js" ></script>
+
+  <!-- Render the sign-in button -->
+  <script>
+    gapi.load('auth2', function() {
+      gapi.auth2.init({
+        client_id: '705584317099-ch8ugrkfaurq309vfrhblc8nli36desb.apps.googleusercontent.com',
+        plugin_name: "hello"
+      });
+      gapi.signin2.render('my-signin2', {
+        'scope': 'https://www.googleapis.com/auth/plus.login',
+        'width': 175,
+        'height': 40,
+        'longtitle': true,
+        'color': 'red',
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    });
+
+    function onSuccess(googleUser) {
+      // Set the user's profile picture as the background image of the #menu-button element
+      document.getElementById('menu-button').style.backgroundImage = 'url(' + googleUser.getBasicProfile().getImageUrl() + ')';
+      // Display the user's name in the dropdown menu
+      document.getElementById('name').innerText = googleUser.getBasicProfile().getName();
+      // Show the dropdown menu
+      document.getElementById('menu-container').style.display = 'block';
+      // Hide the sign-in button
+      document.getElementById('my-signin2').style.display = 'none';
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+
+    // Toggle the dropdown menu when the button is clicked
+    document.getElementById('menu-button').addEventListener('click', function() {
+      var menu = document.getElementById('menu');
+      if (menu.style.display === 'block') {
+        menu.style.display = 'none';
+      } else {
+        menu.style.display = 'block';
+      }
+    });
+
+    // Log the user out when the logout button is clicked
+    document.getElementById('logout-button').addEventListener('click', function() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function() {
+        // Show the sign-in button
+        document.getElementById('my-signin2').style.display = 'block';
+        // Hide the dropdown menu
+        document.getElementById('menu-container').style.display = 'none';
+        // Display a message
+        alert('You have been logged out successfully');
+        location.reload()
+      });
+    });
+  </script>
+            </nav>
+        </div>
+    </header>
+
+
+        <div class="burger"> </div>
+   
+
+    <div class="container">
+        <div class="content-container">
+            <div class="featured-content"
+                style="background: linear-gradient(to bottom, rgba(0,0,0,0), rgb(15, 5, 71)), 
+                url('img/tvshows/viki.webp'); max-width: 100%;
+                ">
+                <img class="featured-title" src="img/tvshows/logov.png" alt="">
+                <p class="featured-desc">Ragnar Lothbrok, a legendary Norse hero, is a mere farmer who rises up to<br> become
+                    a fearless warrior and commander of the Viking tribes
+                     <br>with the support of his equally ferocious family.
+                    </p>
+                    <a href="https://www.imdb.com/video/vi3793207577/?playlistId=tt2306299&ref_=tt_ov_vi" target="_blank"><button class="featured-button"> WATCH</button></a>
+            </div>
+            <div class="movie-list-container">
+                <h1 class="movie-list-title">Trending now</h1>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/1.webp" alt="">
+                            <span class="movie-list-item-title">Walking Dead</span>
+                            <p class="movie-list-item-desc">In the wake of a zombie apocalypse, various survivors struggle to stay alive
+                                 </p>
+                                 <a href="https://www.imdb.com/video/vi2955723289/?playlistId=tt1520211&ref_=tt_ov_vi " target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                                </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/2.webp" alt="">
+                            <span class="movie-list-item-title">The Sinner</span>
+                            <p class="movie-list-item-desc">etective Harry Ambrose investigates various atrocious murder cases and tries to analyse the reasons.</p>
+                            <a href="https://www.imdb.com/video/vi3920806681/?playlistId=tt6048596&ref_=tt_ov_vi"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/5.jpg" alt="">
+                            <span class="movie-list-item-title">Lucifer</span>
+                            <p class="movie-list-item-desc">Based on characters created by Neil Gaiman, Sam Kieth and Mike Dringenberg.</p>
+                           <a href="https://www.imdb.com/video/vi2691547161/?playlistId=tt4052886&ref_=tt_ov_vi"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/6.webp" alt="">
+                            <span class="movie-list-item-title">Queen south</span>
+                            <p class="movie-list-item-desc">Tristan promises Victoria to get a star from the magical kingdom of Stormhold that exists beyond the Wall.</p>
+                            <a href="https://www.imdb.com/video/vi2108211225/?playlistId=tt1064899&ref_=tt_ov_vi"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/4.jpg" alt="">
+                            <span class="movie-list-item-title">DARK
+                            </span>
+                            <p class="movie-list-item-desc">When Daniel Leger, a young heroin addict, is wrongfully arrested in Thailand.</p>
+                            <a href="https://www.imdb.com/video/vi2535636505/?playlistId=tt5753856&ref_=tt_ov_vi"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/8.jpg" alt="">
+                            <span class="movie-list-item-title">ELCHAPO</span>
+                            <p class="movie-list-item-desc">The Dutch Boy Program staves off natural disasters but somehow a Geostorm.</p>
+                            <a href="https://www.imdb.com/video/vi594852121/?playlistId=tt6692188&ref_=tt_ov_vi"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/2.webp" alt="">
+                            <span class="movie-list-item-title">jhonwick</span>
+                            <p class="movie-list-item-desc">The Dutch Boy Program staves off natural disasters but somehow a Geostorm.</p>
+                            <a href="https://www.youtube.com/watch?v=X4bF_quwNtw"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+            <div class="movie-list-container">
+                <h1 class="movie-list-title"> War Tv Shows</h1>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/f2.jpg" alt="">
+                            <span class="movie-list-item-title">Barbarians </span>
+                            <p class="movie-list-item-desc">In the world of international crime, an Interpol agent attempts to hunt down.</p>
+                            <a href="https://www.imdb.com/video/vi3091907097/?playlistId=tt9184986&ref_=tt_ov_vi"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/f3.webp" alt="">
+                            <span class="movie-list-item-title">VIKINGS</span>
+                            <p class="movie-list-item-desc">John Wick, a retired hitman, is forced to return to his old ways after 
+                                a group of Russian gangsters.</p>
+                                <a href="https://www.imdb.com/video/vi3793207577/?playlistId=tt2306299&ref_=tt_ov_vi"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                            </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/f4.jpg" alt="">
+                            <span class="movie-list-item-title">The witcher</span>
+                            <p class="movie-list-item-desc">When the members of an underwater research facility
+                                 are under threat owing to a 75-foot .</p>
+                                 <a href="https://www.imdb.com/video/vi1878049561/?playlistId=tt5180504&ref_=tt_ov_vi"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                                </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/f5.webp" alt="">
+                            <span class="movie-list-item-title">Berserk</span>
+                            <p class="movie-list-item-desc">As feuding brothers battle for control of the throne, daring and righteous mercenary leader Jan Žižka.</p>
+                            <a href="https://www.imdb.com/video/vi515506457/?playlistId=tt0318871&ref_=tt_ov_vi"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/f6.jpg" alt="">
+                            <span class="movie-list-item-title">last kingedom</span>
+                            <p class="movie-list-item-desc">When cannabis mogul Mickey Pearson plans to sell his profitable marijuana empire .</p>
+                            <a href="https://www.imdb.com/video/vi81247769/?playlistId=tt4179452&ref_=tt_ov_vi"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/f7.jpg" alt="">
+                            <span class="movie-list-item-title">outlaw king</span>
+                            <p class="movie-list-item-desc">Google users
+                                A detective desperately attempts to negotiate with the mastermind of a bank robbery .</p>
+                                <a href="https://www.imdb.com/video/vi897890841/?playlistId=tt6679794&ref_=tt_ov_vi"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                            </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/f3.webp" alt="">
+                            <span class="movie-list-item-title">Man</span>
+                            <p class="movie-list-item-desc">Google users
+                                A detective desperately attempts to negotiate with the mastermind of a bank robbery </p>
+                                <a href="https://www.imdb.com/video/vi897890841/?playlistId=tt6679794&ref_=tt_ov_vi"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                            </div>
+                    </div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+            <div class="featured-content"
+            style="background: linear-gradient(to bottom, rgba(0,0,0,0), rgb(15, 5, 71)), 
+            url('img/tvshows/brbanner.jpg'); max-width: 100%;
+            ">
+                <img class="featured-title" src="img/tvshows/br.png" alt="">
+                <p class="featured-desc">Walter White, a chemistry teacher, discovers that he has cancer and decides <br>
+                     to get into the meth-making business to repay his medical debts.<br>
+                     His priorities begin to change when he partners with Jesse</p>
+              <a href="https://www.imdb.com/video/vi338798873/?playlistId=tt0903747&ref_=tt_ov_vi" target="_blank"><button class="featured-button">WATCH</button></a>
+            </div>
+            <div class="movie-list-container">
+                <h1 class="movie-list-title">Tv comedies</h1>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/c1.jpg" alt="">
+                            <span class="movie-list-item-title">alchem of souls</span>
+                            <p class="movie-list-item-desc">Robert McCall's close friend, Susan Plummer, is murdered while investigating 
+                                a murder-suicide. As a former spy.</p>
+                                <a href="https://www.imdb.com/video/vi1627047193/?playlistId=tt20859920&ref_=tt_ov_vi"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                            </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/c2.jpg" alt="">
+                            <span class="movie-list-item-title">Dead to me</span>
+                            <p class="movie-list-item-desc">Cobb steals information from his targets by entering their dreams.
+                                 Saito offers to wipe clean Cobb's.</p>
+                                 <a href="https://www.imdb.com/video/vi3516187929/?playlistId=tt8064302&ref_=tt_ov_vi"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                                </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/c3.webp" alt="">
+                            <span class="movie-list-item-title">kardes payi</span>
+                            <p class="movie-list-item-desc">LA wildlife officer, who is haunted by a tragedy that happened because of him,.</p>
+                            <a href="https://www.imdb.com/title/tt3671754/?ref_=nv_sr_srsg_0"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/c4.jpg" alt="">
+                            <span class="movie-list-item-title">crush landing</span>
+                            <p class="movie-list-item-desc">An Alaskan state trooper suspects that Robert Hansen is a murderer who brutally tortures .</p>
+                            <a href="https://www.imdb.com/title/tt10850932/?ref_=nv_sr_srsg_0"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/c5.jpg" alt="">
+                            <span class="movie-list-item-title">ginny&george
+                            </span>
+                            <p class="movie-list-item-desc">n undercover agent and a spy constantly try to counter-attack each other in order to save themselves.</p>
+                            <a href="https://www.imdb.com/title/tt10813940/?ref_=nv_sr_srsg_0"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/c6.jpg" alt="">
+                            <span class="movie-list-item-title">vincenzo</span>
+                            <p class="movie-list-item-desc">A young girl drives to her hometown to kill her abusive father but learns that h
+                                e has been murdered .</p>
+                                <a href="https://www.imdb.com/title/tt13433812/?ref_=nv_sr_srsg_0"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                            </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/c2.jpg" alt="">
+                            <span class="movie-list-item-title">wind River</span>
+                            <p class="movie-list-item-desc">LAn Alaskan state trooper suspects that Robert Hansen is a murderer who brutally tortures .</p>
+                            <a href="https://www.imdb.com/title/tt10813940/?ref_=nv_sr_srsg_0"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+            <div class="movie-list-container">
+                <h1 class="movie-list-title">popular</h1>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/black.webp" alt="">
+                            <span class="movie-list-item-title">Black list</span>
+                            <p class="movie-list-item-desc">Google users
+                                A proficient group of thieves rob a bank and hold Claire, the assistant manager, hostage.</p>
+                                <a href="https://www.netflix.com/watch/70282397?source=35"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                            </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/m1.jpg" alt="">
+                            <span class="movie-list-item-title">Peaky blinders</span>
+                            <p class="movie-list-item-desc">A four-man  sent from headquarters to repair a 
+                                com-station suddenly falls into a terrorist ambush.</p>
+                                <a href="https://www.imdb.com/title/tt2442560/?ref_=nv_sr_srsg_1"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                            </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/m2.webp" alt="">
+                            <span class="movie-list-item-title">Breaking bad</span>
+                            <p class="movie-list-item-desc">Special ops sniper Brandon Beckett and his legendary father look 
+                                for a dark operative .</p>
+                                <a href="https://www.imdb.com/title/tt0903747/?ref_=nv_sr_srsg_3"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                            </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/m3.webp" alt="">
+                            <span class="movie-list-item-title">S.W.A.T</span>
+                            <p class="movie-list-item-desc">Detectives Mike Lowrey and Marcus Burnett join the Miami Police
+                                 Department's special team.</p>
+                                 <a href="https://www.imdb.com/title/tt6111130/?ref_=nv_sr_srsg_0"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                                </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/m4.webp" alt="">
+                            <span class="movie-list-item-title">bhi</span>
+                            <p class="movie-list-item-desc">It's the end of the world and only a select few millionaires were warned.</p>
+                            <a href="https://www.imdb.com/title/tt21237108/?ref_=nv_sr_srsg_0"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/m5.jpg" alt="">
+                            <span class="movie-list-item-title">Pulp Fiction</span>
+                            <p class="movie-list-item-desc">In the realm of underworld, a series of incidents intertwines the lives of two Los Angeles mobsters,.</p>
+                            <a href="https://www.imdb.com/title/tt0110912/?ref_=nv_sr_srsg_0"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/tvshows/m6.jpg" alt="">
+                            <span class="movie-list-item-title">ending</span>
+                            <p class="movie-list-item-desc">It's the end of the world and only a select few millionaires were warned.</p>
+                            <a href="https://www.imdb.com/title/tt0110912/?ref_=nv_sr_srsg_0"  target="_blank"><button class="movie-list-item-button">Watch</button></a>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer-distributed">
+
+        <div class="footer-left">
+
+            <img src="img/fo1.png" width="200px">
+
+            <p class="footer-links">
+                <a href="#" class="link-1">Home</a>
+                            
+                <a href="priceing.html" target="_blank">Pricing</a>
+            
+                <a href="about.html" target="_blank">About</a>
+                
+                <a href="faq.html" target="_blank">Faq</a>
+                
+                <a href="contact.html" target="_blank">Contact</a>
+            </p>
+
+            <p class="footer-company-name">Cinemy.© 2022</p>
+        </div>
+
+        <div class="footer-center">
+
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>osmanbey 219.</span> istanbul, Turkey</p>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+90-535-928-3471</p>
+            </div>
+
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:support@company.com">support@Cinemy.com</a></p>
+            </div>
+
+        </div>
+
+        <div class="footer-right">
+
+            <p class="footer-company-about">
+                <span>About us</span>
+                Looking for your next great film? Look no further than Cinemy! 
+                we have everything you need for a night in with the perfect film.
+                 Don't miss out – start exploring now!.            </p>
+
+                 <div class="social">
+                    <a href="https://www.facebook.com/ahmed.iblao.92123" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/CODE8R" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/ahmed_iblao/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/ahmed-iblao-11420b23b/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/ahmediblao1" target="_blank"> <i class="fab fa-github"></i></a>
+                    </div>
+            
+        </div>
+
+    </footer>
+    <script src="app.js"></script>
+</body>
+
+</html>
