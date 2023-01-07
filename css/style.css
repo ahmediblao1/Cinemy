@@ -102,7 +102,19 @@ h1 {
 		margin-top: 80px;
 		width: 100%;
   	}
-    
+	  .nav-tab,
+	  .menu-btn {
+		  cursor: pointer;
+		color:#d0ff00;
+		transition: 0.7s;
+	  }
+	  .nav-tab:hover {
+		  cursor: pointer;
+		color:#434e0f;
+		transform: scale(1.1);
+		
+	  
+	  }
 
 	.nav-tab:not(:last-child) {
 		padding: 20px 25px;
@@ -286,7 +298,6 @@ transition: 0.4s;
       transition: transform 0.5s ease-in;
   }
   
- 
   
   .burger {
       display: block;
