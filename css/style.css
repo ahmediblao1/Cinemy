@@ -6,7 +6,7 @@
 
 body {
 	font-family: "Roboto", sans-serif;
-	background-image: linear-gradient(135deg, yellow 0%, yellow 100%);
+	background-color: yellow;
 
 }
 
@@ -27,7 +27,7 @@ h1 {
 	align-items: center;
 	justify-content: space-between;
 	margin: auto;
-	width: 90%;
+	width: 100%;
 	height: 80px;
 	border-radius: 0 0 15px 15px;
 	padding: 0 45px;
@@ -108,6 +108,8 @@ h1 {
 		  cursor: pointer;
 		color:#d0ff00;
 		transition: 0.7s;
+		position: relative;
+		right: 50px;
 	  }
 	  .nav-tab:hover {
 		  cursor: pointer;
