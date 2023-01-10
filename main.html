@@ -46,6 +46,8 @@
 
                     </ul>
                 </div>
+                <div id="message">You have been logged out successfully</div>
+
  
   <script src="https://apis.google.com/js/platform.js" ></script>
 
@@ -112,10 +114,15 @@ window.onload = function() {
       auth2.signOut().then(function() {
         document.getElementById('my-signin2').style.display = 'block';
         document.getElementById('menu-container').style.display = 'none';
-        alert('You have been logged out successfully');
-        location.reload()
+        document.getElementById("message").style.display = "block";
+    setTimeout(function() {
+        document.getElementById("message").style.display = "none";
+    }, 2000);
+        
       });
     });
+
+    
   </script>
             </nav>
         </div>
