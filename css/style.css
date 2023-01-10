@@ -1,5 +1,6 @@
 * {
 	margin: 0;
+
   }
   
   
@@ -7,6 +8,7 @@
   body {
 	  font-family: "Roboto", sans-serif;
 	  background-color: yellow;
+
   
   }
   
@@ -349,7 +351,7 @@
 	border: none;
 	outline: none;
 	font-weight: bold;
-	cursor: url(ico8.png), auto;
+	cursor: pointer;
 	transition: 0.2s;
   }
   .featured-button:hover{
@@ -443,7 +445,6 @@
 	background-color: transparent;
 	border: 2px solid yellow;
 	color: white;
-	cursor: url(ico8.png), auto;
   }
   
   .arrow {
@@ -661,4 +662,18 @@
 	  transition: all ease 0.3s;
   }
   
-  
+  #message {
+    position: fixed;
+    top: 35%;
+    left: 50%;
+	transition: 0.4s;
+    transform: translate(-50%, -50%);
+    text-align: center;
+	color:#0c023b;
+    background-color:#ccc;
+    padding: 20px;
+    border: 1px solid #ccc;
+	border-radius: 10px;
+	opacity: 90%;
+    display: none;
+}
