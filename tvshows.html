@@ -37,9 +37,7 @@
                         <li onclick="Popular()" class="nav-tab">Popular</li>
                         <li  id="my-signin2"></li>
                         <li class="nav-tab" > <div id="menu-container">
-                          <!-- Add a button to toggle the dropdown menu -->
                           <button id="menu-button"></button>
-                          <!-- Add the dropdown menu -->
                           <div id="menu">
                             <div id="name"></div>
                             <button id="logout-button">Log out</button>
@@ -48,11 +46,10 @@
 
                     </ul>
                 </div>
-  <!-- Add a container element for the dropdown menu -->
+                <div id="message">You have been logged out successfully</div>
  
   <script src="https://apis.google.com/js/platform.js" ></script>
 
-  <!-- Render the sign-in button -->
   <script>
     gapi.load('auth2', function() {
       gapi.auth2.init({
@@ -64,7 +61,6 @@
         'width': 175,
         'height': 40,
         'longtitle': true,
-        'color': 'red',
         'theme': 'dark',
         'onsuccess': onSuccess,
         'onfailure': onFailure
@@ -72,20 +68,37 @@
     });
 
     function onSuccess(googleUser) {
-      // Set the user's profile picture as the background image of the #menu-button element
-      document.getElementById('menu-button').style.backgroundImage = 'url(' + googleUser.getBasicProfile().getImageUrl() + ')';
-      // Display the user's name in the dropdown menu
-      document.getElementById('name').innerText = googleUser.getBasicProfile().getName();
-      // Show the dropdown menu
-      document.getElementById('menu-container').style.display = 'block';
-      // Hide the sign-in button
-      document.getElementById('my-signin2').style.display = 'none';
+  var profile = googleUser.getBasicProfile();
+  var userData = {
+    name: profile.getName(),
+    email: profile.getEmail(),
+    imageUrl: profile.getImageUrl()
+  };
+  // this to save user data in localStorage
+  localStorage.setItem("user", JSON.stringify(userData));
+
+  // this UI to show the user's information
+  document.getElementById('menu-button').style.backgroundImage = 'url(' + profile.getImageUrl() + ')';
+  document.getElementById('name').innerText = profile.getName();
+  document.getElementById('menu-container').style.display = 'block';
+  document.getElementById('my-signin2').style.display = 'none';
+}
+window.onload = function() {
+    let user = JSON.parse(localStorage.getItem("user"));
+    if(user){
+        console.log("User already logged in");
+    }else{
+        console.log("User not logged in");
     }
+};
+
+
+
+
     function onFailure(error) {
       console.log(error);
     }
 
-    // Toggle the dropdown menu when the button is clicked
     document.getElementById('menu-button').addEventListener('click', function() {
       var menu = document.getElementById('menu');
       if (menu.style.display === 'block') {
@@ -95,19 +108,20 @@
       }
     });
 
-    // Log the user out when the logout button is clicked
     document.getElementById('logout-button').addEventListener('click', function() {
       var auth2 = gapi.auth2.getAuthInstance();
       auth2.signOut().then(function() {
-        // Show the sign-in button
         document.getElementById('my-signin2').style.display = 'block';
-        // Hide the dropdown menu
         document.getElementById('menu-container').style.display = 'none';
-        // Display a message
-        alert('You have been logged out successfully');
-        location.reload()
+        document.getElementById("message").style.display = "block";
+    setTimeout(function() {
+        document.getElementById("message").style.display = "none";
+    }, 2000);
+        
       });
     });
+
+    
   </script>
             </nav>
         </div>
